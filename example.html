@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example of the Debounce and Throttle</title>
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+    span {
+        color: blue;
+    }
+</style>
+<body>
+    <div id="debounce">
+        <h2>
+            Debounce set to 2 seconds
+        </h2>
+        <input oninput="myFunction1()" id="input1"/>
+        <h3>
+        </h3>
+    </div>
+
+    <div id="throttle">
+        <h2>
+            Throttle set to 2 seconds
+        </h2>
+        <input oninput="myFunction2()" id="input2"/>
+        <h3>
+        </h3>
+    </div>
+</body>
+<script src="./DebounceAndThrottle.js"></script>
+<script>
+    const fakeFunc1 = (val) => {
+        document.querySelector('#debounce h3').innerHTML = "Event with value of <span>" + val + "</span> just fired.";
+    }
+    const newD = debounce(fakeFunc1, 2000);
+    function myFunction1() {
+        let newValue = document.querySelector('#debounce #input1').value;
+        newD(newValue);
+    }
+
+    const fakeFunc2 = (val) => {
+        document.querySelector('#throttle h3').innerHTML = "Event with value of <span>" + val + "</span> just fired.";
+    }    
+    const newT = throttle(fakeFunc2, 2000);
+    function myFunction2() {
+        let newValue = document.querySelector('#throttle #input2').value;
+        newT(newValue);
+    }
+</script>
+</html>
